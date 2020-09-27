@@ -5,6 +5,7 @@ _launchURL() async {
   const url = 'https://email.gov.in';
   if (await canLaunch(url)) {
     await launch(url, forceWebView: true, enableJavaScript: true);
+    print('launched');
   } else {
     throw 'Could not launch $url';
   }
