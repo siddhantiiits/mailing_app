@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mailing_app/mail_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(mailPage());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +28,18 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(),
+      ),
+      backgroundColor: Colors.blueGrey,
     );
   }
 }
