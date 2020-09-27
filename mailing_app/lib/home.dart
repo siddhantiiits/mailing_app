@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mailing_app/mail_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:mailing_app/main.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -64,6 +64,23 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)
           ),
           ),
+              SizedBox(height: 20,),
+              RaisedButton(
+                onPressed: () =>Navigator.pushNamed(context, '/settings'),
+                color: Colors.white,
+                disabledColor: Colors.white,
+
+                child: Text('     Settings      ',
+                  style: TextStyle(
+                      color: Color(0xff67052B),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25
+                  ),
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                ),
+              ),
             ],
           ),
         ),
