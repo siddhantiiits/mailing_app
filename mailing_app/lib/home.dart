@@ -3,12 +3,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:mailing_app/mail_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mailing_app/main.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 _launchURL(String url) async {
   // const url = 'https://email.gov.in';
   if (await canLaunch(url)) {
     await launch(url,
-        forceWebView: true, enableJavaScript: true, enableDomStorage: true, e);
+        forceWebView: true, enableJavaScript: true, enableDomStorage: true,
+//        headers: <String, String>{'my_header_key': 'my_header_value'}
+    
+    );
+
     print('launched');
   } else {
     throw 'Could not launch $url';
@@ -25,6 +29,22 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
+              Text(
+                'MAILO',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 8,
+                    fontSize: 20),
+              ),
+              Center(child: Icon(Icons.contact_mail, size: 100,color: Colors.white)),
+
+
+
+
+              SizedBox(height: 100,),
+
               RaisedButton(
                 onPressed: () => _launchURL('https://email.gov.in'),
                 //   Navigator.push(
