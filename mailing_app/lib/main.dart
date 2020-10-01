@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
 import 'pin.dart';
 import 'home.dart';
-import 'mail_page.dart';
 import 'package:mailing_app/settings.dart';
 
-
-
 void main() => runApp(MaterialApp(
-  initialRoute: '/',
-
-
-
-
-  routes: {
-    '/' : (context) => MyApp(),
-    '/pin': (context) => PassCodeScreen(),
-    '/mail': (context) => mailPage(),
-    '/settings': (context) => settings(),
-
-  },
-
-));
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyApp(),
+        '/pin': (context) => PassCodeScreen(),
+        // '/mail': (context) => mailPage(),
+        '/settings': (context) => settings(),
+      },
+    ));
