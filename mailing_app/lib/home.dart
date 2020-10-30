@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:mailing_app/mail_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mailing_app/main.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 _launchURL(String url) async {
   // const url = 'https://email.gov.in';
   if (await canLaunch(url)) {
     await launch(url,
-        forceWebView: true, enableJavaScript: true, enableDomStorage: true,
+        forceWebView: true, enableDomStorage: true, enableJavaScript: true
 //        headers: <String, String>{'my_header_key': 'my_header_value'}
-    
-    );
+        );
 
     print('launched');
   } else {
@@ -29,7 +27,6 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
               Text(
                 'MAILO',
                 style: TextStyle(
@@ -38,13 +35,12 @@ class MyApp extends StatelessWidget {
                     letterSpacing: 8,
                     fontSize: 20),
               ),
-              Center(child: Icon(Icons.contact_mail, size: 100,color: Colors.white)),
-
-
-
-
-              SizedBox(height: 100,),
-
+              Center(
+                child: Icon(Icons.contact_mail, size: 100, color: Colors.white),
+              ),
+              SizedBox(
+                height: 100,
+              ),
               RaisedButton(
                 onPressed: () => _launchURL('https://email.gov.in'),
                 //   Navigator.push(
@@ -125,25 +121,24 @@ class MyApp extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
               ),
-
-              // SizedBox(
-              //   height: 20,
-              // ),
-              // RaisedButton(
-              //   onPressed: () =>
-              //       _launchURL('https://passapp.email.gov.in/passapp/'),
-              //   color: Colors.white,
-              //   disabledColor: Colors.white,
-              //   child: Text(
-              //     'Change Password',
-              //     style: TextStyle(
-              //         color: Color(0xff67052B),
-              //         fontWeight: FontWeight.bold,
-              //         fontSize: 25),
-              //   ),
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10)),
-              // ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                onPressed: () =>
+                    _launchURL('https://passapp.email.gov.in/passapp/'),
+                color: Colors.white,
+                disabledColor: Colors.white,
+                child: Text(
+                  'Change Password',
+                  style: TextStyle(
+                      color: Color(0xff67052B),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
             ],
           ),
         ),
@@ -158,7 +153,8 @@ class MyApp extends StatelessWidget {
 
                     // title: Text('Are you sure you want to exit the App?'),
                     title: Text('Mailo'),
-                    content: Text('This App is Developed by Mr. X & Mr. Y.'),
+                    content: Text(
+                        'This App is Developed by Pulkit Goyal & Siddhant Tiwari.'),
                     actions: <Widget>[
                       FlatButton(
                         child: Text(
@@ -168,17 +164,9 @@ class MyApp extends StatelessWidget {
                         ),
                         onPressed: () => Navigator.of(context).pop(false),
                       ),
-                      // FlatButton(
-                      //   child: Text(
-                      //     "Yes",
-                      //     style: TextStyle(color: Color(0xffd11b5d)),
-                      //   ),
-                      //   onPressed: () => Navigator.of(context).pop(true),
-                      // ),
                     ],
                   );
                 });
-            // Add your onPressed code here!
           },
           child: Icon(
             Icons.info_outline,
