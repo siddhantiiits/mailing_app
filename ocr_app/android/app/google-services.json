@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546746604844",
+    "firebase_url": "https://mlocr-bc620.firebaseio.com",
+    "project_id": "mlocr-bc620",
+    "storage_bucket": "mlocr-bc620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546746604844:android:51bcb7c9afa7e6562f2089",
+        "android_client_info": {
+          "package_name": "com.webdevwithus.ocr_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546746604844-bj0fll7bu96v2h1f7eg47a9ujt131u6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhOqB5DLvogSuEXl5gW2qsULcO5dp8y64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546746604844-bj0fll7bu96v2h1f7eg47a9ujt131u6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
