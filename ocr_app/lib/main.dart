@@ -96,6 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     }
 
+    temp=temp.replaceAll('\n', ''); // removes newlines from temp - unnecessary pauses
+
 
 
 //    await translator.translate(temp,to:'hi').then((output) {
