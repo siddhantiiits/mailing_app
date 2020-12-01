@@ -23,6 +23,7 @@ import 'a.dart';
 import 'bb.dart';
 import 'c.dart';
 import 'd.dart';
+import 'img_label.dart';
 
 
 void main() => runApp(MyApp());
@@ -236,13 +237,13 @@ class _MyHomePageState extends State<MyHomePage> {
           fabOpenIcon: Icon(Icons.dashboard, color:HexColor('#112250') ),
           children: <Widget>[
             IconButton(icon: Icon(Icons.record_voice_over, color: Colors.white, size: 35,), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp5()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => settings()));
               print('Home');
             }),
-            IconButton(icon: Icon(Icons.airplanemode_active, color: Colors.white, size: 35,), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => My2Page()));
-              print('Home');
-            }),
+//            IconButton(icon: Icon(Icons.airplanemode_active, color: Colors.white, size: 35,), onPressed: () {
+//              Navigator.push(context, MaterialPageRoute(builder: (context) => My2Page()));
+//              print('Home');
+//            }),
             IconButton(icon: Icon(Icons.colorize, color: Colors.white, size: 35,), onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => My3Page()));
               print('Home');
