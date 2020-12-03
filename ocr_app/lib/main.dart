@@ -24,9 +24,20 @@ import 'bb.dart';
 import 'c.dart';
 import 'd.dart';
 import 'img_label.dart';
+import 'widgets/side_nav.dart';
+import 'package:camera/camera.dart';
+import 'dart:async';
 
 
-void main() => runApp(MyApp());
+int num=0;
+List<CameraDescription> cameras;
+
+Future<void> main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -36,16 +47,39 @@ class MyApp extends StatelessWidget {
 
       title: 'Smart Eyes',
       home: MyHomePage(),
+      theme: ThemeData(
+        primaryColor: HexColor('#182035')
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  CameraController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = CameraController(cameras[0], ResolutionPreset.medium);
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 
 
 
@@ -134,16 +168,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery. of(context). size. width;
 
 
 
     print("build is called $x");
     return Scaffold(
+      drawer: NavDrawer(context,0),
+      appBar: AppBar(
+        centerTitle: true,
+
+        title: Text(
+        'Smart Cane',
+
+
+        ),
+
+        backgroundColor: HexColor('#182035'),
+        elevation: 0,
+      ),
       backgroundColor: HexColor('#182035'),
       body: SafeArea(
         child: Column(
 
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             isImageLoaded
                 ? Center(
@@ -151,8 +199,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   quarterTurns: x,
                   child: Container(
 
-                    height: 300,
-                    width: 250,
+                    width: size/1.15,
+                    height: (size / controller.value.aspectRatio),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
@@ -160,7 +208,17 @@ class _MyHomePageState extends State<MyHomePage> {
                             fit: BoxFit.cover)),
                   ),
                 ))
-                : Container(),
+                : ClipRect(
+    child: FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Container(
+
+            width: size/1.15,
+            height: (size / controller.value.aspectRatio),
+            child: AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: CameraPreview(controller),
+            )))),
             SizedBox(
               height: 10,
             ),

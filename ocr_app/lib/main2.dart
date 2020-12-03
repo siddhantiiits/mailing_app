@@ -3,25 +3,33 @@ import 'dart:async';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'main.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'widgets/side_nav.dart';
+import 'package:ocr_app/main.dart';
 
-main(){
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(FlutterVisionApp());
-}
 
-class FlutterVisionApp extends StatelessWidget {
+//main(){
+//  WidgetsFlutterBinding.ensureInitialized();
+//  runApp(FlutterVisionApp());
+//}
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FlutterVisionHome(),
-    );
-  }
-}
+//class FlutterVisionApp extends StatelessWidget {
+//
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      home: FlutterVisionHome(),
+//      theme: ThemeData(
+//        primaryColor: HexColor('#182035')
+//      ),
+//    );
+//  }
+//}
 
 class FlutterVisionHome extends StatefulWidget {
   @override
@@ -29,6 +37,8 @@ class FlutterVisionHome extends StatefulWidget {
 }
 
 class _FlutterVisionHomeState extends State<FlutterVisionHome> {
+
+//  int num=1;
   String text;
   String ftext=' ';
   final FlutterTts flutterTts = FlutterTts();
@@ -38,6 +48,7 @@ class _FlutterVisionHomeState extends State<FlutterVisionHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavDrawer(context,1),
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text("Image Labeller")
