@@ -33,7 +33,7 @@ dependencies:
   pimp_my_button: ^1.0.0
   fab_circular_menu: ^1.0.0
   edge_detection: ^1.0.5
-  firebase_core: ^0.5.0
+#  firebase_core: ^0.5.3
   canny_edge_detection: ^1.0.2
   awesome_card: ^1.1.0
   flutter_colorpicker: ^0.3.4
@@ -47,6 +47,11 @@ dependencies:
   path_provider: ^1.6.22
   shared_preferences: ^0.5.12+2
   html: ^0.14.0+4
+  image_stack: ^1.1.0
+  firebase_storage: ^2.0.8
+  firebase_core: ^0.5.2
+  firebase_analytics: ^5.0.6
+
 
 
 

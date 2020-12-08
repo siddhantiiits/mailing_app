@@ -9,6 +9,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_stack/image_stack.dart';
 import 'dart:io';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -92,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future pickImage() async {
     var tempStore = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print(tempStore);
 
     setState(() {
       pickedImage =
@@ -169,7 +171,19 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery. of(context). size. width;
-
+    List<String> images=["https://images.unsplash.com/photo-1458071103673-6a6e4c4a3413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+    "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+    "https://images.unsplash.com/photo-1473700216830-7e08d47f858e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+    ];
 
 
     print("build is called $x");
@@ -188,133 +202,155 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
       ),
       backgroundColor: HexColor('#182035'),
-      body: SafeArea(
-        child: Column(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
 
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            isImageLoaded
-                ? Center(
-                child: RotatedBox(
-                  quarterTurns: x,
-                  child: Container(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              isImageLoaded
+                  ? Center(
+                  child: RotatedBox(
+                    quarterTurns: x,
+                    child: Container(
 
-                    width: size/1.15,
-                    height: (size / controller.value.aspectRatio),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: FileImage(pickedImage),
-                            fit: BoxFit.cover)),
-                  ),
-                ))
-                : ClipRect(
-    child: FittedBox(
-        fit: BoxFit.fitWidth,
-        child: Container(
-
-            width: size/1.15,
-            height: (size / controller.value.aspectRatio),
-            child: AspectRatio(
-              aspectRatio: controller.value.aspectRatio,
-              child: CameraPreview(controller),
-            )))),
-            SizedBox(
-              height: 10,
-            ),
-            isImageLoaded
-                ? IconButton(
-
-              color: HexColor('#161D2F'),
-              hoverColor: HexColor('#182035'),
-              splashColor: Colors.white70,
-
-              icon: Icon(Icons.rotate_90_degrees_ccw,
-                size: 20,
-                color: Colors.white,
-              ),
-
-
-              onPressed: RotateImg,
-            )
-                : Container(),
-            RaisedButton(
-              elevation: 6,
-              color: HexColor('#161D2F'),
-              hoverColor: HexColor('#182035'),
-              splashColor: Colors.white70,
-
-              child: Text('Pick an image',
-                style: TextStyle(
-                    fontSize: 15,
-                    letterSpacing: 2,
-                    color: Colors.white
-                ),
-              ),
-              onPressed: pickImage,
-            ),
-            SizedBox(
-
-              height: 10,
-            ),
-
-
-            isImageLoaded ? PimpedButton(
-              particle: DemoParticle(),
-              pimpedWidgetBuilder: (context, controller) {
-                return RaisedButton(onPressed: () {
-                  controller.forward(from: 0.0);
-                  readText();
-                },
-                  elevation: 6,
-                  color: HexColor('#161D2F'),
-                  hoverColor: HexColor('#182035'),
-                  splashColor: Colors.white70,
-
-                  child: Text('Speak Up',
-                    style: TextStyle(
-                        fontSize: 15,
-                        letterSpacing: 2,
-                        color: Colors.white
+                      width: size/1.15,
+                      height: (size / controller.value.aspectRatio),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                              image: FileImage(pickedImage),
+                              fit: BoxFit.cover)),
                     ),
-                  ),
+                  ))
+                  : ClipRect(
+    child: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Container(
 
-                );
-              },
-            ) : Container(),
-          ],
+              width: size/1.15,
+              height: (size / controller.value.aspectRatio),
+              child: AspectRatio(
+                aspectRatio: controller.value.aspectRatio,
+                child: CameraPreview(controller),
+              )))),
+              SizedBox(
+                height: 10,
+              ),
+              isImageLoaded
+                  ? IconButton(
+
+                color: HexColor('#161D2F'),
+                hoverColor: HexColor('#182035'),
+                splashColor: Colors.white70,
+
+                icon: Icon(Icons.rotate_90_degrees_ccw,
+                  size: 20,
+                  color: Colors.white,
+                ),
+
+
+                onPressed: RotateImg,
+              )
+                  : Container(),
+              RaisedButton(
+                elevation: 6,
+                color: HexColor('#161D2F'),
+                hoverColor: HexColor('#182035'),
+                splashColor: Colors.white70,
+
+                child: Text('Pick an image',
+                  style: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: 2,
+                      color: Colors.white
+                  ),
+                ),
+                onPressed: () {
+                  print('heyyyyyyy');
+                  setState(() {
+                    print('hey');
+                    isImageLoaded = true;
+                    pickedImage=File('/data/user/0/com.webdevwithus.ocr_app/cache/image_picker5960057178698883867.jpg');
+                  });
+
+                },
+              ),
+              SizedBox(
+
+                height: 10,
+              ),
+
+
+              isImageLoaded ? PimpedButton(
+                particle: DemoParticle(),
+                pimpedWidgetBuilder: (context, controller) {
+                  return RaisedButton(onPressed: () {
+                    controller.forward(from: 0.0);
+                    readText();
+                  },
+                    elevation: 6,
+                    color: HexColor('#161D2F'),
+                    hoverColor: HexColor('#182035'),
+                    splashColor: Colors.white70,
+
+                    child: Text('Speak Up',
+                      style: TextStyle(
+                          fontSize: 15,
+                          letterSpacing: 2,
+                          color: Colors.white
+                      ),
+                    ),
+
+                  );
+                },
+              ) : Container(),
+    Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          ImageStack(
+          imageList: images,
+          imageRadius: 50, // Radius of each images
+          imageCount: 8, // Maximum number of images to be shown in stack
+          imageBorderWidth: 3,
+            totalCount:12,// Border width around the images
+          ),
+        ],
+    ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FabCircularMenu(
-          fabCloseColor: Colors.white,
-          fabColor: HexColor('#112250') ,
-          fabOpenColor: Colors.white,
-          ringColor: HexColor('#2F3C60'),
-
-
-          fabOpenIcon: Icon(Icons.dashboard, color:HexColor('#112250') ),
-          children: <Widget>[
-            IconButton(icon: Icon(Icons.record_voice_over, color: Colors.white, size: 35,), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => settings()));
-              print('Home');
-            }),
-//            IconButton(icon: Icon(Icons.airplanemode_active, color: Colors.white, size: 35,), onPressed: () {
-//              Navigator.push(context, MaterialPageRoute(builder: (context) => My2Page()));
+//      floatingActionButton: FabCircularMenu(
+//          fabCloseColor: Colors.white,
+//          fabColor: HexColor('#112250') ,
+//          fabOpenColor: Colors.white,
+//          ringColor: HexColor('#2F3C60'),
+//
+//
+//          fabOpenIcon: Icon(Icons.dashboard, color:HexColor('#112250') ),
+//          children: <Widget>[
+//            IconButton(icon: Icon(Icons.record_voice_over, color: Colors.white, size: 35,), onPressed: () {
+//              Navigator.push(context, MaterialPageRoute(builder: (context) => settings()));
 //              print('Home');
 //            }),
-            IconButton(icon: Icon(Icons.colorize, color: Colors.white, size: 35,), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => My3Page()));
-              print('Home');
-            }),
-
-            IconButton(icon: Icon(Icons.person, color: Colors.white, size: 35,), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => My4app()));
-              print('Home');
-            }),
-
-
-          ]
-      ),
+////            IconButton(icon: Icon(Icons.airplanemode_active, color: Colors.white, size: 35,), onPressed: () {
+////              Navigator.push(context, MaterialPageRoute(builder: (context) => My2Page()));
+////              print('Home');
+////            }),
+//            IconButton(icon: Icon(Icons.colorize, color: Colors.white, size: 35,), onPressed: () {
+//              Navigator.push(context, MaterialPageRoute(builder: (context) => My3Page()));
+//              print('Home');
+//            }),
+//
+//            IconButton(icon: Icon(Icons.person, color: Colors.white, size: 35,), onPressed: () {
+//              Navigator.push(context, MaterialPageRoute(builder: (context) => My4app()));
+//              print('Home');
+//            }),
+//
+//
+//          ]
+//      ),
     );
   }
 }

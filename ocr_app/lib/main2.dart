@@ -74,11 +74,11 @@ class _FlutterVisionHomeState extends State<FlutterVisionHome> {
   {
     return GestureDetector(
       child: Center(
-        child: Image.asset("lib/Assets/check.jpg"),
+        child: Image.asset("lib/Assets/draw.jpg"),
       ),
         onTap: () async{
         print("detecting");
-        String file= await getImageFileFromAssets("check.jpg");
+        String file= await getImageFileFromAssets("draw.jpg");
         print(file);
         setState(() {
           imagePath= file;
