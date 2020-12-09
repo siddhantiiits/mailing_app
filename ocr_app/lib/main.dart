@@ -28,7 +28,7 @@ import 'img_label.dart';
 import 'widgets/side_nav.dart';
 import 'package:camera/camera.dart';
 import 'dart:async';
-
+import 'package:firebase_storage/firebase_storage.dart';
 
 int num=0;
 List<CameraDescription> cameras;
@@ -164,6 +164,12 @@ class _MyHomePageState extends State<MyHomePage> {
       x += 1;
     });
   }
+
+
+
+
+
+
 
 
 
