@@ -26,8 +26,10 @@ import 'c.dart';
 import 'd.dart';
 import 'img_label.dart';
 import 'widgets/side_nav.dart';
+import 'package:path/path.dart' as Path;
 import 'package:camera/camera.dart';
 import 'dart:async';
+import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
 int num=0;
