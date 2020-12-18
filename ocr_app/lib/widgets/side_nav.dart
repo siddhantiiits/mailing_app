@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:ocr_app/main2.dart';
 import 'package:ocr_app/main.dart';
-import 'package:ocr_app/camera.dart';
+//import 'package:ocr_app/camera.dart';
 
   Widget NavDrawer(BuildContext context, int num) {
     return Drawer(
@@ -43,10 +43,10 @@ import 'package:ocr_app/camera.dart';
           ListTile(
             leading: Icon(Icons.border_color),
             title: Text('Test Camera'),
-            onTap: () => {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=> CameraApp())),
-            on()
-            },
+//            onTap: () => {
+//              Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=> CameraApp())),
+//            on()
+//            },
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),

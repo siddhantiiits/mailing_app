@@ -13,18 +13,13 @@ import 'package:image_stack/image_stack.dart';
 import 'dart:io';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:ocr_app/c.dart';
-import 'package:ocr_app/d.dart';
+
 import 'package:translator/translator.dart';
 import 'package:image/image.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:pimp_my_button/pimp_my_button.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
-import 'a.dart';
-import 'bb.dart';
-import 'c.dart';
-import 'd.dart';
-import 'img_label.dart';
+
 import 'widgets/side_nav.dart';
 import 'package:path/path.dart' as Path;
 import 'package:camera/camera.dart';
@@ -155,6 +150,15 @@ class _MyHomePageState extends State<MyHomePage> {
 //    await flutterTts.synthesizeToFile(temp, '1staudio.mp4');
 
     print(temp);
+  }
+
+Translate(temp) async{
+  await translator.translate(temp,to:'hi').then((output) {
+      setState(() {
+        trans = output.toString();
+      });
+    } );
+
   }
 
 
